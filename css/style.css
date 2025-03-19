@@ -34,6 +34,7 @@
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: "Roboto", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --cpr: #6C7CFF;
 }
 
 *,
@@ -47,6 +48,7 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    scroll-behavior: smooth;
 }
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
@@ -9927,7 +9929,8 @@ h6,
 }
 
 .portfolio-item{
-  border: 1px solid #000;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
 }
 
 .portfolio-item .portfolio-btn {
@@ -9983,8 +9986,106 @@ h6,
 
 .modal{
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
 }
 
 .modal.mostrar{
-  display: block;
+  display: flex;
+}
+
+.contenido-modal{
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 95%;
+}
+
+.short-video{
+  height: 900px; /* Ajusta la altura en relación al ancho */
+  max-height: 400px; /* Altura máxima para evitar que sea demasiado grande */
+  width: 90%;
+}
+
+.btn-portfolio{
+  cursor: pointer;
+  border: 1px solid #000;
+  padding: 5px 8px;
+  border-radius: 10px;
+  color: #040505;
+}
+
+
+.btn-portfolio:hover{
+  text-decoration: none;
+  color: #000;
+}
+
+.btn-ver-proyecto{
+  background-color: #FAD0C4;
+}
+
+.btn-descargar{
+  background-color:#A7C7E7;
+}
+.btn-ver-proyecto i{
+  color: red;
+}
+
+.btn-descargar i{
+  color: #0045AD;
+}
+
+/* COLORES */
+
+
+
+.btn-outline-primary {
+  color: var(--cpr);
+  border-color: var(--cpr);
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: var(--cpr);
+  border-color: var(--cpr);
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link.active{
+  color: var(--cpr);
+}
+
+.text-primary{
+  color: var(--cpr) !important;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle{
+  color: #fff;
+  background-color: var(--cpr);
+  border-color: var(--cpr);
+}
+
+.bg-primary {
+  background-color: var(--cpr) !important;
+}
+
+/* FIN DE COLORES */
+
+@media (min-width: 500px) {
+  .contenido-modal{
+    width: 70%;
+    padding: 10px 10px;
+  }
+  .short-video{
+    width: 100%;
+  }
+  
 }

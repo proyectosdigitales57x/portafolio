@@ -1,23 +1,29 @@
+let boton = document.querySelectorAll("[data-abrir-modal]")
 
-let modal = document.getElementById("modal");
-let btnVerProyecto = document.getElementById("btn-ver-proyecto");
-let cerrarModal = document.getElementById("cerrar-modal");
-let iframe = document.getElementById("short-video");
-const videoSrc = iframe.src;
-
-
-
-btnVerProyecto.addEventListener("click", ()=>{
-    modal.classList.add("mostrar")
+// Seleccionamos todos los botones que abren un modal
+document.querySelectorAll("[data-abrir-modal]").forEach(boton => {
+    boton.addEventListener("click", () => {
+        const modalId = boton.getAttribute("data-abrir-modal");
+        document.getElementById(modalId).style.display = "flex";
+    });
 });
 
-cerrarModal.addEventListener("click", ()=>{
-    modal.classList.remove("mostrar")
-    iframe.src = ""; // Se borra el src
-    setTimeout(() => {
-        iframe.src = videoSrc; // Se vuelve a asignar después de un breve tiempo
-    }, 300);
-});
+// Seleccionamos todos los botones de cierre
+document.querySelectorAll("[data-cerrar-modal]").forEach(boton => {
+    boton.addEventListener("click", () => {
+        const modal = boton.closest(".modal");
+        const iframe = modal.querySelector("iframe");
+        modal.style.display = "none";
 
+        // Si hay un iframe dentro, detener el video de YouTube
+        if (iframe) {
+            const videoSrc = iframe.getAttribute("src");
+            iframe.setAttribute("src", ""); // Borrar src para detener
+            setTimeout(() => {
+                iframe.setAttribute("src", videoSrc); // Restaurar src
+            }, 300);
+        }
+    });
+});
 
 

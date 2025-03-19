@@ -1,0 +1,121 @@
+<!-- Botones para abrir los modales -->
+<button data-abrir-modal="modal1">Abrir Modal 1</button>
+<button data-abrir-modal="modal2">Abrir Modal 2</button>
+<button data-abrir-modal="modal3">Abrir Modal 3</button>
+<button data-abrir-modal="modal4">Abrir Modal 4</button>
+<button data-abrir-modal="modal5">Abrir Modal 5</button>
+<button data-abrir-modal="modal6">Abrir Modal 6</button>
+
+<!-- Modal 1 -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <span class="close" data-cerrar-modal>&times;</span>
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <span class="close" data-cerrar-modal>&times;</span>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<!-- Modal 3 -->
+<div id="modal3" class="modal">
+    <div class="modal-content">
+        <span class="close" data-cerrar-modal>&times;</span>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<!-- Modal 4 -->
+<div id="modal4" class="modal">
+    <div class="modal-content">
+        <span class="close" data-cerrar-modal>&times;</span>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<!-- Modal 5 -->
+<div id="modal5" class="modal">
+    <div class="modal-content">
+        <span class="close" data-cerrar-modal>&times;</span>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_5" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<!-- Modal 6 -->
+<div id="modal6" class="modal">
+    <div class="modal-content">
+        <span class="close" data-cerrar-modal>&times;</span>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_6" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<style>
+    /* Estilos del modal */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        position: relative;
+        width: 80%;
+        max-width: 600px;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    iframe {
+        width: 100%;
+        height: 315px;
+    }
+</style>
+
+<script>
+    // Seleccionamos todos los botones que abren un modal
+document.querySelectorAll("[data-abrir-modal]").forEach(boton => {
+    boton.addEventListener("click", () => {
+        const modalId = boton.getAttribute("data-abrir-modal");
+        document.getElementById(modalId).style.display = "flex";
+    });
+});
+
+// Seleccionamos todos los botones de cierre
+document.querySelectorAll("[data-cerrar-modal]").forEach(boton => {
+    boton.addEventListener("click", () => {
+        const modal = boton.closest(".modal");
+        const iframe = modal.querySelector("iframe");
+        modal.style.display = "none";
+
+        // Si hay un iframe dentro, detener el video de YouTube
+        if (iframe) {
+            const videoSrc = iframe.getAttribute("src");
+            iframe.setAttribute("src", ""); // Borrar src para detener
+            setTimeout(() => {
+                iframe.setAttribute("src", videoSrc); // Restaurar src
+            }, 300);
+        }
+    });
+});
+
+</script>
